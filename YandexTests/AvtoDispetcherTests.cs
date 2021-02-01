@@ -1,8 +1,11 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using PageObjects;
+using System;
 using System.Linq;
+using System.Threading;
 using YandexPage;
 
 namespace YandexTests
@@ -12,6 +15,7 @@ namespace YandexTests
         static ChromeDriver driver = new ChromeDriver(OptionSettrings());
         static YandexPageObj yp;
         static AvtodispetcherPage ap;
+        WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
 
         private static ChromeOptions OptionSettrings()
         {
@@ -37,6 +41,7 @@ namespace YandexTests
             [Test]
             public void bTestPriceDistanseFirst()
             {
+                
                 ap.enterData();
                 ap.clickOnCalculateBtn();
                 Assert.IsTrue(ap.isPriceEqual("3726") && ap.isDistanceEqual("897"));
@@ -44,13 +49,14 @@ namespace YandexTests
             [Test]
             public void cTestPriceDistanseSecond()
             {
+                Thread.Sleep(50);//Чтобы сервер не ругался и не разрывал соединения
                 ap.addThrowCity("Великий Новгород");
-
+                Thread.Sleep(30000);
                 ap.clickOnCalculateBtn();
                 Assert.IsTrue(ap.isPriceEqual("4002") && ap.isDistanceEqual("966"));
 
             }
-            [TearDown]
+            [OneTimeTearDown]
             public void close_Browser()
             {
                 driver.Quit();
