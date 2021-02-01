@@ -45,10 +45,15 @@ namespace YandexTests
             public void cTestPriceDistanseSecond()
             {
                 ap.addThrowCity("Великий Новгород");
+
                 ap.clickOnCalculateBtn();
                 Assert.IsTrue(ap.isPriceEqual("4002") && ap.isDistanceEqual("966"));
 
-
+            }
+            [TearDown]
+            public void close_Browser()
+            {
+                driver.Quit();
             }
 
         }
