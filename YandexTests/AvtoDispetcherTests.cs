@@ -15,7 +15,6 @@ namespace YandexTests
         static ChromeDriver driver = new ChromeDriver(OptionSettrings());
         static YandexPageObj yp;
         static AvtodispetcherPage ap;
-        WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
 
         private static ChromeOptions OptionSettrings()
         {
