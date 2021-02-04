@@ -23,6 +23,10 @@ namespace YandexTests
             options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
             return options;
         }
+        private static void RemovePopup()
+        {
+            driver.FindElementByClassName("ezmob-footer-close").Click();
+        }
         [TestFixture]
         public class Fixture1
         {
@@ -40,7 +44,7 @@ namespace YandexTests
             [Test]
             public void bTestPriceDistanseFirst()
             {
-                
+                RemovePopup();
                 ap.enterData();
                 ap.clickOnCalculateBtn();
                 Assert.IsTrue(ap.isPriceEqual("3726") && ap.isDistanceEqual("897"));
@@ -48,7 +52,7 @@ namespace YandexTests
             [Test]
             public void cTestPriceDistanseSecond()
             {
-                Thread.Sleep(50);//Чтобы сервер не ругался и не разрывал соединения
+                RemovePopup();
                 ap.addThrowCity("Великий Новгород");
                 Thread.Sleep(30000);
                 ap.clickOnCalculateBtn();
