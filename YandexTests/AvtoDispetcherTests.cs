@@ -30,8 +30,8 @@ namespace YandexTests
         [TestFixture]
         public class Fixture1
         {
-            [Test]
-            public void aTestUrl() //Добавлены буквы для соблюдения порядка тестирования. Order почему-то не работает
+            [Test, Order(1)]
+            public void TestUrl() //Добавлены буквы для соблюдения порядка тестирования. Order почему-то не работает
             {
                 yp = new YandexPageObj(driver);
                 yp.Open();//Открываем yandex
@@ -41,16 +41,16 @@ namespace YandexTests
                 Assert.AreEqual("https://www.avtodispetcher.ru/distance/", ap.Url);
             }
 
-            [Test]
-            public void bTestPriceDistanseFirst()
+            [Test,Order(2)]
+            public void TestPriceDistanseFirst()
             {
                 RemovePopup();
                 ap.enterData();
                 ap.clickOnCalculateBtn();
                 Assert.IsTrue(ap.isPriceEqual("3726") && ap.isDistanceEqual("897"));
             }
-            [Test]
-            public void cTestPriceDistanseSecond()
+            [Test, Order(3)]
+            public void TestPriceDistanseSecond()
             {
                 RemovePopup();
                 ap.addThrowCity("Великий Новгород");
