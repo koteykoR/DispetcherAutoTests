@@ -20,6 +20,7 @@ namespace PageObjects
         private readonly By _price = By.XPath(@"//a[contains(text(),'руб')]");
         private readonly By _changeRouteBtn = By.XPath(@"//span[contains(text(),'Настроить')]");
         private readonly By _throwCityField = By.Name("v");
+        private readonly By _fuelAndPrice = By.XPath("//form[contains(@onsubmit,'return fuelFormSubmitHandler(this);')]");
         #endregion 
         public string Distance { get=>driver.FindElement(_distance).Text;}
         public string Price { get => getPrice(); }
@@ -65,10 +66,11 @@ namespace PageObjects
         }
         public string getPrice() //Спрятали суммарную стоимость топлива,пришлось получать так(Пофиксить)
         {
-            var str = driver.FindElement(_price).Text;
-            var from = str.LastIndexOf("сэкономьте ")+ "сэкономьте ".Length;
-            var to = str.IndexOf(" руб");
-            return str.Substring(from, to - from);
+            var str = driver.FindElement(_fuelAndPrice).Text;
+            var from = str.LastIndexOf("= ")+ "= ".Length;
+            var to = str.LastIndexOf(" руб");
+            var s = str.Substring(from, to - from);
+            return s;
         }
         public bool isPriceEqual(string price)
         {
