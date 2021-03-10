@@ -64,7 +64,7 @@ namespace PageObjects
         {
             driver.FindElement(_calculateBtn).SendKeys(Keys.Enter);
         }
-        public string getPrice() //Спрятали суммарную стоимость топлива,пришлось получать так(Пофиксить)
+        public string GetPrice() //Спрятали суммарную стоимость топлива,пришлось получать так(Пофиксить)
         {
             var str = driver.FindElement(_fuelAndPrice).Text;
             var from = str.LastIndexOf("= ")+ "= ".Length;
@@ -72,19 +72,19 @@ namespace PageObjects
             var s = str.Substring(from, to - from);
             return s;
         }
-        public bool isPriceEqual(string price)
+        public bool IsPriceEqual(string price)
         {
             if (price == Price)
                 return true;
             else return false;
         }
-        public bool isDistanceEqual(string distance)
+        public bool IsDistanceEqual(string distance)
         {
             if (distance == Distance)
                 return true;
             else return false;
         }
-        public void addThrowCity(string city)
+        public void AddThrowCity(string city)
         {
             driver.FindElement(_changeRouteBtn).Click();
             driver.FindElement(_throwCityField).SendKeys(city);
