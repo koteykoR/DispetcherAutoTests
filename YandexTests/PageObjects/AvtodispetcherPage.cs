@@ -64,7 +64,7 @@ namespace PageObjects
         {
             driver.FindElement(_calculateBtn).SendKeys(Keys.Enter);
         }
-        public string GetPrice() //Спрятали суммарную стоимость топлива,пришлось получать так(Пофиксить)
+        public string GetPrice() 
         {
             var str = driver.FindElement(_fuelAndPrice).Text;
             var from = str.LastIndexOf("= ")+ "= ".Length;
