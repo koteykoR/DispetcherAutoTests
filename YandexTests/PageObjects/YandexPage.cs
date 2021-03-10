@@ -12,13 +12,14 @@ namespace YandexPage
     public class YandexPageObj
     {
 
-        public ChromeDriver driver;
+       
         private readonly By _searchFeild = By.XPath(
            "//input[contains(@class,'input__control input__input mini-suggest__input')]");
         private readonly By _findBtn = By.XPath("//button[contains(text(),'Найти')]");
         private readonly By _dispetcherLink = By.XPath("//b[contains (text(),'avtodispetcher.ru')]");
-        private readonly string url = "https://yandex.ru/";
+        private readonly string _url = "https://yandex.ru/";
         public string Url { get => driver.Url; }
+        public ChromeDriver driver;
         public YandexPageObj(ChromeDriver webDriver)
         {
             driver = webDriver;
@@ -26,17 +27,17 @@ namespace YandexPage
 
         public void Open()
         {
-            driver.Navigate().GoToUrl(url);
+            driver.Navigate().GoToUrl(_url);
         }
-        public void sendKeysToSearchField(string Text)
+        public void SendKeysToSearchField(string Text)
         {
             driver.FindElement(_searchFeild).SendKeys(Text);
         }
-        public void clickSearchButton()
+        public void ClickSearchButton()
         {
             driver.FindElement(_findBtn).Click();
         }
-        public AvtodispetcherPage clickOnSite()
+        public AvtodispetcherPage СlickOnSite()
         {
             driver.FindElement(_dispetcherLink).Click();
             driver.SwitchTo().Window(driver.WindowHandles.Last());

@@ -12,11 +12,11 @@ namespace YandexTests
 {
     public class AvtoDispetcherTests
     {
-        static ChromeDriver driver = new ChromeDriver(OptionSettrings());
+        static ChromeDriver driver = new ChromeDriver(OptionSettings());
         static YandexPageObj yp;
         static AvtodispetcherPage ap;
 
-        private static ChromeOptions OptionSettrings()
+        private static ChromeOptions OptionSettings()
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("disable-popup-blocking");
@@ -31,13 +31,13 @@ namespace YandexTests
         public class Fixture1
         {
             [Test, Order(1)]
-            public void TestUrl() //Добавлены буквы для соблюдения порядка тестирования. Order почему-то не работает
+            public void TestUrl() 
             {
                 yp = new YandexPageObj(driver);
                 yp.Open();//Открываем yandex
-                yp.sendKeysToSearchField("расчет расстояний между городами");
-                yp.clickSearchButton();
-                ap = yp.clickOnSite();//Получаем страницу avtodispatcher нажатием на 
+                yp.SendKeysToSearchField("расчет расстояний между городами");
+                yp.ClickSearchButton();
+                ap = yp.СlickOnSite();//Открываем сайт avtodispatcher нажатием на ссылку
                 Assert.AreEqual("https://www.avtodispetcher.ru/distance/", ap.Url);
             }
 
@@ -45,8 +45,8 @@ namespace YandexTests
             public void TestPriceDistanseFirst()
             {
                 RemovePopup();
-                ap.enterData();
-                ap.clickOnCalculateBtn();
+                ap.EnterData();
+                ap.ClickOnCalculateBtn();
                 Assert.IsTrue(ap.isPriceEqual("3726") && ap.isDistanceEqual("897"));
             }
             [Test, Order(3)]
@@ -55,7 +55,7 @@ namespace YandexTests
                 RemovePopup();
                 ap.addThrowCity("Великий Новгород");
                 Thread.Sleep(30000);
-                ap.clickOnCalculateBtn();
+                ap.ClickOnCalculateBtn();
                 Assert.IsTrue(ap.isPriceEqual("4002") && ap.isDistanceEqual("966"));
 
             }

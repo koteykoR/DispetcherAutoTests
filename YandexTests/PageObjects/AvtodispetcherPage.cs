@@ -31,35 +31,35 @@ namespace PageObjects
         {
             driver.Navigate().GoToUrl("https://www.avtodispetcher.ru/distance/");
         }
-        public  void enterData()
+        public  void EnterData()
         {
-            enterFrom();
-            enterTo();
-            enterFc();
-            enterFp();
+            EnterFrom();
+            EnterTo();
+            EnterFc();
+            EnterFp();
         }
-        private void enterFrom()
+        private void EnterFrom()
         {
             driver.FindElement(_fromFeild).SendKeys("Тула");
         }
-        private void enterTo()
+        private void EnterTo()
         {
             driver.FindElement(_toFeild).SendKeys("Санкт-Петербург");
 
         }
-        private void enterFc()
+        private void EnterFc()
         {
             var fc = driver.FindElement(_fc);
             fc.Clear();
             fc.SendKeys("9");
         }
-        private void enterFp()
+        private void EnterFp()
         {
             var fc = driver.FindElement(_fp);
             fc.Clear();
             fc.SendKeys("46");
         }
-        public void clickOnCalculateBtn()
+        public void ClickOnCalculateBtn()
         {
             driver.FindElement(_calculateBtn).SendKeys(Keys.Enter);
         }
