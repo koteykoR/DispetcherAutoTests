@@ -47,16 +47,16 @@ namespace YandexTests
                 RemovePopup();
                 ap.EnterData();
                 ap.ClickOnCalculateBtn();
-                Assert.IsTrue(ap.isPriceEqual("3726") && ap.isDistanceEqual("897"));
+                Assert.IsTrue(ap.IsPriceEqual("3726") && ap.IsDistanceEqual("897"));
             }
             [Test, Order(3)]
             public void TestPriceDistanseSecond()
             {
                 RemovePopup();
-                ap.addThrowCity("Великий Новгород");
+                ap.AddThrowCity("Великий Новгород");
                 Thread.Sleep(30000);
                 ap.ClickOnCalculateBtn();
-                Assert.IsTrue(ap.isPriceEqual("4002") && ap.isDistanceEqual("966"));
+                Assert.IsTrue(ap.IsPriceEqual("4002") && ap.IsDistanceEqual("966"));
 
             }
             [OneTimeTearDown]

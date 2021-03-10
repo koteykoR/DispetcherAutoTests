@@ -23,7 +23,7 @@ namespace PageObjects
         private readonly By _fuelAndPrice = By.XPath("//form[contains(@onsubmit,'return fuelFormSubmitHandler(this);')]");
         #endregion 
         public string Distance { get=>driver.FindElement(_distance).Text;}
-        public string Price { get => getPrice(); }
+        public string Price { get => GetPrice(); }
         public AvtodispetcherPage(IWebDriver webDriver)
         {
             driver = webDriver;
